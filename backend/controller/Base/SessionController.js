@@ -4,6 +4,26 @@ var SessionController = function() {
 
 SessionController.prototype.startSession = function(req, res, next) {
     // Database Connection or Pool, authentication, tokenization and all the other operations can be here...
+
+    // We can add more complex query builder or filterin in this section...
+
+    // We are getting, limit, offset and filter options from the url query params and storing in res.locals
+    var params = {};
+    if(req.query.limit) {
+        params.limit = parseInt(req.query.limit);
+    }
+    if(req.query.offset) {
+        params.offset = parseInt(req.query.offset);
+    }
+    if(req.query.filters) {
+        params.where = {};
+        var filters = req.query.filters.split(',');
+        filters.forEach(function(filt, ind) {
+            splitFilter = filt.split('|');
+            params.where[splitFilter[0]] = splitFilter[1];
+        });
+    }
+    res.locals.params = params;
     next();
 };
 
