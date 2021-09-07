@@ -1,88 +1,104 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'react-bootstrap';
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Pagination from '@material-ui/lab/Pagination';
 
 import Main from '../../layouts/Main';
 
-const Products = () => (
-  <Main
-    title="Products"
-    description="ProductsPage"
-  >
-    <Container className="product-list">
-      <Row>
-        <Col md={3} lg={4} sm={2}>
-        <div className="product">
-            <div class="thumbnail">
-                <img className="group list-group-image" src="https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg" alt="" />
-                <div class="caption">
-                    <h4 class="group inner list-group-item-heading">
-                        Product title</h4>
-                    <p class="group inner list-group-item-text">
-                        Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-6">
-                            <p class="lead">
-                                $21.000</p>
-                        </div>
-                        <div class="col-xs-12 col-md-6">
-                            <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </Col>
-        <Col md={3} lg={4} sm={2}>
-        <div className="product">
-            <div class="thumbnail">
-                <img class="group list-group-image" src="https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg" alt="" />
-                <div class="caption">
-                    <h4 class="group inner list-group-item-heading">
-                        Product title</h4>
-                    <p class="group inner list-group-item-text">
-                        Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-6">
-                            <p class="lead">
-                                $21.000</p>
-                        </div>
-                        <div class="col-xs-12 col-md-6">
-                            <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </Col>
-        <Col md={3} lg={4} sm={2}>
-        <div className="product">
-            <div class="thumbnail">
-                <img class="group list-group-image" src="https://static.remove.bg/remove-bg-web/a4391f37bcf9559ea5f1741ac3cee53c31ab75cc/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg" alt="" />
-                <div class="caption">
-                    <h4 class="group inner list-group-item-heading">
-                        Product title</h4>
-                    <p class="group inner list-group-item-text">
-                        Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-6">
-                            <p class="lead">
-                                $21.000</p>
-                        </div>
-                        <div class="col-xs-12 col-md-6">
-                            <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </Col>
-      </Row>
-    </Container>
-  </Main>
-);
+const useStyles = makeStyles((theme) => ({
+    icon: {
+        marginRight: theme.spacing(2),
+    },
+    cardGrid: {
+        paddingTop: theme.spacing(8),
+        paddingBottom: theme.spacing(8),
+    },
+    card: {
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    cardMedia: {
+        paddingTop: '56.25%', // 16:9
+    },
+    cardContent: {
+        flexGrow: 1,
+    },
+    footer: {
+        backgroundColor: theme.palette.background.paper,
+        padding: theme.spacing(6),
+    },
+    pagination: {
+        justifyContent: 'center',
+        paddingBottom: 30,
+    },
+    paginationContainer: {
+        paddingTop: '0px',
+        paddingBottom: '64px',
+    }
+}));
 
-export default Products;
+const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+export default function Album() {
+
+    const [page, setPage] = React.useState(1);
+    const limit = 18;
+    const classes = useStyles();
+
+    const handleChange = (event, value) => {
+        console.log("value", value);
+        setPage(value);
+    };
+
+    return (
+        <Main
+            title="Products"
+            description="ProductsPage"
+        >
+            <Container className={classes.cardGrid} maxWidth="md">
+                {/* End hero unit */}
+                <Grid container spacing={4}>
+                    {cards.map((card) => (
+                        <Grid item key={card} xs={12} sm={6} md={4}>
+                            <Card className={classes.card}>
+                                <CardMedia
+                                    className={classes.cardMedia}
+                                    image="https://source.unsplash.com/random"
+                                    title="Image title"
+                                />
+                                <CardContent className={classes.cardContent}>
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        Heading
+                                    </Typography>
+                                    <Typography>
+                                        This is a media card. You can use this section to describe the content.
+                                    </Typography>
+                                </CardContent>
+                                <CardActions>
+                                    <Button size="small" color="primary">
+                                        View
+                                    </Button>
+                                    <Button size="small" color="primary">
+                                        Edit
+                                    </Button>
+                                </CardActions>
+                            </Card>
+                        </Grid>
+                    ))}
+                </Grid>
+                
+            </Container>
+            <Container className={classes.paginationContainer} maxWidth="md">
+                <Pagination count={cards.length} page={page} onChange={handleChange} ariant="outlined" shape="rounded" className={classes.pagination}/>
+            </Container>
+        </Main>
+    );
+}
