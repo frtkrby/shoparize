@@ -18,3 +18,7 @@ This project was coded with Nodejs & ReactJS.
 
 1. Edit database informations /backend/config/env.js
 2. Edit version and other informations /backend/config/config.js
+
+## TODO
+1. Gulp usage for to move dist folder and assets
+2. UI improvement works (more styling, new header and footer designs)
