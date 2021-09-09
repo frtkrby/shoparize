@@ -15,6 +15,7 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import axios from 'axios';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
+import Config from '../../config/config';
 
 import Main from '../../layouts/Main';
 
@@ -90,6 +91,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function Album() {
+    console.log("config", Config);
 
     const [page, setPage] = useState(1);
     const [products, setProducts] = useState([]);
@@ -97,7 +99,7 @@ export default function Album() {
     const [title, setTitle] = useState("");
     const [startPrice, setStartPrice] = useState(null);
     const [endPrice, setEndPrice] = useState(null);
-    const limit = 2;
+    const limit = Config.limit;
     const classes = useStyles();
 
     useEffect(() => {

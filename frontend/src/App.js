@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Main from './layouts/Main'; // fallback for lazy pages
+
 import './assets/css/main.scss'; // All of our styles
 import 'bootstrap/dist/css/bootstrap.min.css';
 /*<Route component={NotFound} status={404} />*/
