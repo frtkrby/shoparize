@@ -14,7 +14,7 @@ This project was coded with Nodejs & ReactJS.
 8. move dist folder to inside of ../backend/build/ 
 9. cd backend 
 10. node app.js
-
+Optional: Run migration (/backend/migration/migration.sql) for sample database
 ## Configuration
 
 1. Edit database informations /backend/config/env.js
