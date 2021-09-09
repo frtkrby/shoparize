@@ -14,15 +14,17 @@ const Home = lazy(() => import('./pages/Home/Home'));
 const Products = lazy(() => import('./pages/Products/Products'));
 const AboutUs = lazy(() => import('./pages/AboutUs/AboutUs'));
 const Contact = lazy(() => import('./pages/Contact/Contact'));
+const ProductDetail = lazy(() => import('./pages/ProductDetail/ProductDetail'));
 
 const App = () => (
   <BrowserRouter basename={PUBLIC_URL}>
     <Suspense fallback={<Main />}>
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={Products} />
         <Route exact path="/products" component={Products} />
         <Route exact path="/about-us" component={AboutUs} />
         <Route exact path="/contact" component={Contact} />
+        <Route exact path="/product/:id" component={ProductDetail} />
       </Switch>
     </Suspense>
   </BrowserRouter>

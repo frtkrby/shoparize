@@ -7,14 +7,15 @@ var ProducstController = function() {
 };
 
 ProducstController.prototype.get = function(req, res, next) {
-
     Products.findAll(res.locals.params).then(data => {
-		res.data = {
-            data: data,
-            recordsTotal: 1,
-            recordsFiltered: 1
-        };
-        next();
+        Products.count({where: res.locals.params.where})
+          .then(function(count) {
+              res.data = {
+                data: data,
+                recordsTotal: count
+              };
+              next();
+          });
 	}).catch(err => {
 		next(err);
 	});

@@ -1,3 +1,6 @@
+const db = require('../../config/db.config.js');
+const Op = db.Sequelize.Op;
+
 var SessionController = function() {
     // empty constructor
 };
@@ -20,7 +23,23 @@ SessionController.prototype.startSession = function(req, res, next) {
         var filters = req.query.filters.split(',');
         filters.forEach(function(filt, ind) {
             splitFilter = filt.split('|');
-            params.where[splitFilter[0]] = splitFilter[1];
+            if(splitFilter.length == 2) {
+                params.where[splitFilter[0]] = { [Op.like]: `%${splitFilter[1]}%` };
+            } else if(splitFilter.length == 3) {
+                if(splitFilter[1] == 'gteq') {
+                    if(!params.where[splitFilter[0]]) {
+                        params.where[splitFilter[0]] = { [Op.gte]: parseInt(splitFilter[2]) }
+                    } else {
+                        params.where[splitFilter[0]][Op.gte] = parseInt(splitFilter[2]);
+                    }
+                } else if(splitFilter[1] = 'lteq') {
+                    if(!params.where[splitFilter[0]]) {
+                        params.where[splitFilter[0]] = { [Op.lte]: parseInt(splitFilter[2]) }
+                    } else {
+                        params.where[splitFilter[0]][Op.lte] = parseInt(splitFilter[2]);
+                    }
+                }
+            }
         });
     }
     res.locals.params = params;

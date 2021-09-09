@@ -1,9 +1,10 @@
 const env = {
     database: 'shoparize',
     username: 'root',
-    password: '',
+    password: 'root',
     host: 'localhost',
     dialect: 'mysql',
+    port: 8889,
     pool: {
       max: 5,
       min: 0,
