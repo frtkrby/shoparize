@@ -9,10 +9,11 @@ This project was coded with Nodejs & ReactJS.
 3. npm install
 4. cd ../frontend
 5. npm install
-6. npm run build
-7. move dist folder to inside of ../backend/build/ 
-8. cd backend 
-9. node app.js
+6. Edit proxy in the package.json file (for backend side url)
+7. npm run build
+8. move dist folder to inside of ../backend/build/ 
+9. cd backend 
+10. node app.js
 
 ## Configuration
 
